@@ -49,8 +49,13 @@ function ConduitRankFromLevel(level)
 end
 
 function GetSourceFromNameAndIlevel(name, ilvl)
-
-    return addon.CONDUIT_DB[name][tostring(ilvl)];
+    if addon.CONDUIT_DB then
+        if addon.CONDUIT_DB[name] then
+            if addon.CONDUIT_DB[name][tostring(ilvl)] then
+                return addon.CONDUIT_DB[name][tostring(ilvl)];
+            end
+        end
+    end
 end
 
 function appendConduitDropLocation(tooltip)
@@ -76,11 +81,23 @@ function appendConduitDropLocation(tooltip)
 
         tooltip:AddLine("\n");
 
+        local multipleSources = false;
+
         for index, level in ipairs(filteredConduitLevels) do
             local rank = ConduitRankFromLevel(level);
             local source = GetSourceFromNameAndIlevel(conduitName, level);
 
             tooltip:AddLine("Rank " .. rank .. " (ilvl: " .. level .. "): " .. source);
+
+            local altSource = GetSourceFromNameAndIlevel("_" .. conduitName, level);
+            if altSource then
+                tooltip:AddLine("Rank " .. rank .. " (ilvl: " .. level .. "): " .. altSource);
+                multipleSources = true;
+            end
+        end
+
+        if multipleSources then
+            tooltip:AddLine("\nThis conduit is available from multiple sources");
         end
 
     end
