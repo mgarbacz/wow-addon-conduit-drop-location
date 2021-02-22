@@ -5,4 +5,4 @@
 ## Author: Bsl
 
 ConduitDB.lua
-ConduitDropLocation.lua
+ConduitDropLocations.lua
