@@ -6,7 +6,10 @@ function GetConduitLevel(conduitLevelText)
 end
 
 function IsConduit(conduitTypeText)
-    return string.find(conduitTypeText, "Conduit");
+    if conduitTypeText then
+        return string.find(conduitTypeText, "Conduit");
+    end
+    return false;
 end
 
 function GetConduitType(conduitTypeText)
