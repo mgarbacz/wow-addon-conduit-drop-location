@@ -13,8 +13,11 @@ function IsConduit(conduitTypeText)
 end
 
 function GetConduitType(conduitTypeText)
-    local startPos, endPos, type = string.find(conduitTypeText, "(%w+)%s")
-    return type;
+	if conduitTypeText then
+		local startPos, endPos, type = string.find(conduitTypeText, "(%w+)%s")
+		return type;
+	end
+    return nil;
 end
 
 function ConduitRankFromLevel(level)
@@ -90,13 +93,16 @@ function appendConduitDropLocation(tooltip)
             local rank = ConduitRankFromLevel(level);
             local source = GetSourceFromNameAndIlevel(conduitName, level);
 
-            tooltip:AddLine("Rank " .. rank .. " (ilvl: " .. level .. "): " .. source);
+            if source ~= "--" then
+                tooltip:AddLine("Rank " .. rank .. " (ilvl: " .. level .. "): " .. source);
+            end
 
             local altSource = GetSourceFromNameAndIlevel("_" .. conduitName, level);
-            if altSource then
+            if altSource and altSource ~= "--" then
                 tooltip:AddLine("Rank " .. rank .. " (ilvl: " .. level .. "): " .. altSource);
                 multipleSources = true;
             end
+
         end
 
         if multipleSources then
