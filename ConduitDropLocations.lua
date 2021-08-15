@@ -89,7 +89,7 @@ function appendConduitDropLocation(tooltip)
 
         local multipleSources = false;
 
-        for index, level in ipairs(filteredConduitLevels) do
+       for index, level in ipairs(filteredConduitLevels) do
             local rank = ConduitRankFromLevel(level);
             local source = GetSourceFromNameAndIlevel(conduitName, level);
 
@@ -97,12 +97,31 @@ function appendConduitDropLocation(tooltip)
                 tooltip:AddLine("Rank " .. rank .. " (ilvl: " .. level .. "): " .. source);
             end
 
+<<<<<<< Updated upstream
             local altSource = GetSourceFromNameAndIlevel("_" .. conduitName, level);
             if altSource ~= nil and altSource ~= "--" then
+=======
+            local altSource = GetSourceFromNameAndIlevel("_"  .. conduitName, level);
+            if altSource and altSource ~= "--" then
+>>>>>>> Stashed changes
                 tooltip:AddLine("Rank " .. rank .. " (ilvl: " .. level .. "): " .. altSource);
                 multipleSources = true;
             end
-
+            local tertiarySource = GetSourceFromNameAndIlevel("__" .. conduitName, level);
+            if tertiarySource and tertiarySource ~= "--" then
+                tooltip:AddLine("Rank " .. rank .. " (ilvl: " .. level .. "): " .. tertiarySource);
+                multipleSources = true;
+            end
+            local fourthSource = GetSourceFromNameAndIlevel("___" .. conduitName, level);
+            if fourthSource and fourthSource ~= "--" then
+                tooltip:AddLine("Rank " .. rank .. " (ilvl: " .. level .. "): " .. fourthSource);
+                multipleSources = true;
+            end
+            local fifthSource = GetSourceFromNameAndIlevel("____" .. conduitName, level);
+            if fifthSource and fifthSource ~= "--" then
+                tooltip:AddLine("Rank " .. rank .. " (ilvl: " .. level .. "): " .. fifthSource);
+                multipleSources = true;
+            end
         end
 
         if multipleSources then
