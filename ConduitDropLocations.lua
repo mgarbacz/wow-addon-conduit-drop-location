@@ -36,7 +36,7 @@ function ConduitRankFromLevel(level)
     elseif level == 226 then
         return 7;
     elseif level == 239 then
-        return 9;
+        return 8;
     elseif level == 252 then
         return 9;
     elseif level == 265 then
@@ -89,7 +89,7 @@ function appendConduitDropLocation(tooltip)
 
         local multipleSources = false;
 
-        for index, level in ipairs(filteredConduitLevels) do
+       for index, level in ipairs(filteredConduitLevels) do
             local rank = ConduitRankFromLevel(level);
             local source = GetSourceFromNameAndIlevel(conduitName, level);
 
@@ -99,10 +99,28 @@ function appendConduitDropLocation(tooltip)
 
             local altSource = GetSourceFromNameAndIlevel("_" .. conduitName, level);
             if altSource ~= nil and altSource ~= "--" then
+
                 tooltip:AddLine("Rank " .. rank .. " (ilvl: " .. level .. "): " .. altSource);
                 multipleSources = true;
             end
 
+            local tertiarySource = GetSourceFromNameAndIlevel("__" .. conduitName, level);
+            if tertiarySource and tertiarySource ~= "--" then
+                tooltip:AddLine("Rank " .. rank .. " (ilvl: " .. level .. "): " .. tertiarySource);
+                multipleSources = true;
+            end
+
+            local fourthSource = GetSourceFromNameAndIlevel("___" .. conduitName, level);
+            if fourthSource and fourthSource ~= "--" then
+                tooltip:AddLine("Rank " .. rank .. " (ilvl: " .. level .. "): " .. fourthSource);
+                multipleSources = true;
+            end
+            
+            local fifthSource = GetSourceFromNameAndIlevel("____" .. conduitName, level);
+            if fifthSource and fifthSource ~= "--" then
+                tooltip:AddLine("Rank " .. rank .. " (ilvl: " .. level .. "): " .. fifthSource);
+                multipleSources = true;
+            end
         end
 
         if multipleSources then
