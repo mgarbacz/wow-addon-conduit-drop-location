@@ -93,12 +93,12 @@ function appendConduitDropLocation(tooltip)
             local rank = ConduitRankFromLevel(level);
             local source = GetSourceFromNameAndIlevel(conduitName, level);
 
-            if source ~= "--" then
+            if source ~= nil and source ~= "--" then
                 tooltip:AddLine("Rank " .. rank .. " (ilvl: " .. level .. "): " .. source);
             end
 
             local altSource = GetSourceFromNameAndIlevel("_" .. conduitName, level);
-            if altSource and altSource ~= "--" then
+            if altSource ~= nil and altSource ~= "--" then
                 tooltip:AddLine("Rank " .. rank .. " (ilvl: " .. level .. "): " .. altSource);
                 multipleSources = true;
             end
