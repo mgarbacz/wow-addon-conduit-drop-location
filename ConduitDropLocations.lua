@@ -72,7 +72,7 @@ function appendConduitDropLocation(tooltip)
         local conduitType = _G["GameTooltipTextLeft2"] and GetConduitType(_G["GameTooltipTextLeft2"]:GetText())
         local conduitLevel = _G["GameTooltipTextLeft3"] and GetConduitLevel(_G["GameTooltipTextLeft3"]:GetText())
 
-        local relevantConduitLevels = {145, 158, 171, 184, 200, 213, 226};
+        local relevantConduitLevels = {145, 158, 171, 184, 200, 213, 226, 239, 252};
         local filteredConduitLevels = {};
         
         for index, level in ipairs(relevantConduitLevels) do
