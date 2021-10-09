@@ -1,5 +1,4 @@
-local name,addon=...;
-addon.CONDUIT_DB = {["Accelerated Cold"] = {["145"] = "--", ["158"] = "Dungeon (Halls of Atonement)", ["171"] = "Dungeon (Halls of Atonement)", ["184"] = "Dungeon (Halls of Atonement)", ["200"] = "--", ["213"] = "--", ["226"] = "--", ["239"] = "--", ["252"] = "--"},
+CONDUIT_DB = {["Accelerated Cold"] = {["145"] = "--", ["158"] = "Dungeon (Halls of Atonement)", ["171"] = "Dungeon (Halls of Atonement)", ["184"] = "Dungeon (Halls of Atonement)", ["200"] = "--", ["213"] = "--", ["226"] = "--", ["239"] = "--", ["252"] = "--"},
 ["_Accelerated Cold"] = {["145"] = "--", ["158"] = "--", ["171"] = "--", ["184"] = "--", ["200"] = "--", ["213"] = "PvP Vendor (unranked)", ["226"] = "PvP Vendor (1600+)", ["239"] = "PvP Vendor (1800+)", ["252"] = "PvP Vendor (2100+)"},
 ["Accrued Vitality"] = {["145"] = "--", ["158"] = "--", ["171"] = "--", ["184"] = "--", ["200"] = "--", ["213"] = "--", ["226"] = "Dungeon (Tazavesh, the Veiled Market)", ["239"] = "--", ["252"] = "--"},
 ["_Accrued Vitality"] = {["145"] = "--", ["158"] = "--", ["171"] = "--", ["184"] = "Raid-boss (Artificer Xy'mox), LFR", ["200"] = "Raid-boss (Artificer Xy'mox), Normal", ["213"] = "Raid-boss (Artificer Xy'mox), Heroic", ["226"] = "Raid-boss (Artificer Xy'mox), Mythic", ["239"] = "--", ["252"] = "--"},
@@ -706,3 +705,40 @@ addon.CONDUIT_DB = {["Accelerated Cold"] = {["145"] = "--", ["158"] = "Dungeon (
 ["_Wrench Evil"] = {["145"] = "--", ["158"] = "--", ["171"] = "--", ["184"] = "--", ["200"] = "--", ["213"] = "Raid-boss (The Tarragrue), LFR", ["226"] = "Raid-boss (The Tarragrue), Normal", ["239"] = "Raid-boss (The Tarragrue), Heroic", ["252"] = "Raid-boss (The Tarragrue), Mythic"},
 ["Xuen's Bond"] = {["145"] = "--", ["158"] = "Dungeon (Spires of Ascension)", ["171"] = "Dungeon (Spires of Ascension)", ["184"] = "Dungeon (Spires of Ascension)", ["200"] = "--", ["213"] = "--", ["226"] = "--", ["239"] = "--", ["252"] = "--"},
 ["_Xuen's Bond"] = {["145"] = "--", ["158"] = "--", ["171"] = "--", ["184"] = "--", ["200"] = "--", ["213"] = "Raid-boss (Painsmith Raznal), LFR", ["226"] = "Raid-boss (Painsmith Raznal), Normal", ["239"] = "Raid-boss (Painsmith Raznal), Heroic", ["252"] = "Raid-boss (Painsmith Raznal), Mythic"}};
+
+-- ["184"], "Dungeon (Name of Place), Normal/Heroic/M0"
+-- ["213"], "Dungeon (Name of Place), M+ 2-6"
+-- ["226"], "Dungeon (Name of Place), M+ 7+"
+
+-- if string.starts(location, "Dungeon") then
+function string.starts(String,Start)
+   return string.sub(String,1,string.len(Start))==Start
+end
+
+if CONDUIT_DB then
+    for name in pairs(CONDUIT_DB) do
+      if CONDUIT_DB[name] then
+        if CONDUIT_DB[name]["158"] then
+          CONDUIT_DB[name]["158"] = "--"
+        end
+        if CONDUIT_DB[name]["171"] then
+          CONDUIT_DB[name]["171"] = "--"
+        end
+        if CONDUIT_DB[name]["213"] and string.starts(CONDUIT_DB[name]["184"], "Dungeon") then
+          CONDUIT_DB[name]["213"] = CONDUIT_DB[name]["184"] .. ", M+ 2-6"
+        end
+        if CONDUIT_DB[name]["226"] and string.starts(CONDUIT_DB[name]["184"], "Dungeon") then
+          CONDUIT_DB[name]["226"] = CONDUIT_DB[name]["184"] .. ", M+ 7+"
+        end
+        if CONDUIT_DB[name]["184"] and string.starts(CONDUIT_DB[name]["184"], "Dungeon") then
+          CONDUIT_DB[name]["184"] = CONDUIT_DB[name]["184"] .. ", Normal/Heroic/M0"
+        end
+      end
+    end
+end
+
+-- print(CONDUIT_DB["Bloodletting"]["226"])
+-- print(CONDUIT_DB["Mind Devourer"]["184"])
+-- print(CONDUIT_DB["Sleight of Hand"]["171"])
+-- print(CONDUIT_DB["Xuen's Bond"]["213"])
+-- print(CONDUIT_DB["_Xuen's Bond"]["213"])
