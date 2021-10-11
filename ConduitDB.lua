@@ -1,4 +1,5 @@
-CONDUIT_DB = {["Accelerated Cold"] = {["145"] = "--", ["158"] = "Dungeon (Halls of Atonement)", ["171"] = "Dungeon (Halls of Atonement)", ["184"] = "Dungeon (Halls of Atonement)", ["200"] = "--", ["213"] = "--", ["226"] = "--", ["239"] = "--", ["252"] = "--"},
+local name,addon=...;
+addon.CONDUIT_DB = {["Accelerated Cold"] = {["145"] = "--", ["158"] = "Dungeon (Halls of Atonement)", ["171"] = "Dungeon (Halls of Atonement)", ["184"] = "Dungeon (Halls of Atonement)", ["200"] = "--", ["213"] = "--", ["226"] = "--", ["239"] = "--", ["252"] = "--"},
 ["_Accelerated Cold"] = {["145"] = "--", ["158"] = "--", ["171"] = "--", ["184"] = "--", ["200"] = "--", ["213"] = "PvP Vendor (unranked)", ["226"] = "PvP Vendor (1600+)", ["239"] = "PvP Vendor (1800+)", ["252"] = "PvP Vendor (2100+)"},
 ["Accrued Vitality"] = {["145"] = "--", ["158"] = "--", ["171"] = "--", ["184"] = "--", ["200"] = "--", ["213"] = "--", ["226"] = "Dungeon (Tazavesh, the Veiled Market)", ["239"] = "--", ["252"] = "--"},
 ["_Accrued Vitality"] = {["145"] = "--", ["158"] = "--", ["171"] = "--", ["184"] = "Raid-boss (Artificer Xy'mox), LFR", ["200"] = "Raid-boss (Artificer Xy'mox), Normal", ["213"] = "Raid-boss (Artificer Xy'mox), Heroic", ["226"] = "Raid-boss (Artificer Xy'mox), Mythic", ["239"] = "--", ["252"] = "--"},
@@ -715,23 +716,23 @@ function string.starts(String,Start)
    return string.sub(String,1,string.len(Start))==Start
 end
 
-if CONDUIT_DB then
-    for name in pairs(CONDUIT_DB) do
-      if CONDUIT_DB[name] then
-        if CONDUIT_DB[name]["158"] then
-          CONDUIT_DB[name]["158"] = "--"
+if addon.CONDUIT_DB then
+    for name in pairs(addon.CONDUIT_DB) do
+      if addon.CONDUIT_DB[name] then
+        if addon.CONDUIT_DB[name]["158"] then
+          addon.CONDUIT_DB[name]["158"] = "--"
         end
-        if CONDUIT_DB[name]["171"] then
-          CONDUIT_DB[name]["171"] = "--"
+        if addon.CONDUIT_DB[name]["171"] then
+          addon.CONDUIT_DB[name]["171"] = "--"
         end
-        if CONDUIT_DB[name]["213"] and string.starts(CONDUIT_DB[name]["184"], "Dungeon") then
-          CONDUIT_DB[name]["213"] = CONDUIT_DB[name]["184"] .. ", M+ 2-6"
+        if addon.CONDUIT_DB[name]["213"] and string.starts(addon.CONDUIT_DB[name]["184"], "Dungeon") then
+          addon.CONDUIT_DB[name]["213"] = addon.CONDUIT_DB[name]["184"] .. ", M+ 2-6"
         end
-        if CONDUIT_DB[name]["226"] and string.starts(CONDUIT_DB[name]["184"], "Dungeon") then
-          CONDUIT_DB[name]["226"] = CONDUIT_DB[name]["184"] .. ", M+ 7+"
+        if addon.CONDUIT_DB[name]["226"] and string.starts(addon.CONDUIT_DB[name]["184"], "Dungeon") then
+          addon.CONDUIT_DB[name]["226"] = addon.CONDUIT_DB[name]["184"] .. ", M+ 7+"
         end
-        if CONDUIT_DB[name]["184"] and string.starts(CONDUIT_DB[name]["184"], "Dungeon") then
-          CONDUIT_DB[name]["184"] = CONDUIT_DB[name]["184"] .. ", Normal/Heroic/M0"
+        if addon.CONDUIT_DB[name]["184"] and string.starts(addon.CONDUIT_DB[name]["184"], "Dungeon") then
+          addon.CONDUIT_DB[name]["184"] = addon.CONDUIT_DB[name]["184"] .. ", Normal/Heroic/M0"
         end
       end
     end
@@ -742,3 +743,4 @@ end
 -- print(CONDUIT_DB["Sleight of Hand"]["171"])
 -- print(CONDUIT_DB["Xuen's Bond"]["213"])
 -- print(CONDUIT_DB["_Xuen's Bond"]["213"])
+
