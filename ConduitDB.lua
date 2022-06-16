@@ -724,14 +724,23 @@ if CONDUIT_DB then
         if CONDUIT_DB[name]["171"] then
           CONDUIT_DB[name]["171"] = "--"
         end
-        if CONDUIT_DB[name]["213"] and string.starts(CONDUIT_DB[name]["184"], "Dungeon") then
-          CONDUIT_DB[name]["213"] = CONDUIT_DB[name]["184"] .. ", M+ 2-6"
-        end
-        if CONDUIT_DB[name]["226"] and string.starts(CONDUIT_DB[name]["184"], "Dungeon") then
-          CONDUIT_DB[name]["226"] = CONDUIT_DB[name]["184"] .. ", M+ 7+"
+        if CONDUIT_DB[name]["184"] and string.starts(CONDUIT_DB[name]["184"], "Dungeon") then
+          CONDUIT_DB[name]["200"] = CONDUIT_DB[name]["184"] .. ", Normal"
         end
         if CONDUIT_DB[name]["184"] and string.starts(CONDUIT_DB[name]["184"], "Dungeon") then
-          CONDUIT_DB[name]["184"] = CONDUIT_DB[name]["184"] .. ", Normal/Heroic/M0"
+          CONDUIT_DB[name]["213"] = CONDUIT_DB[name]["184"] .. ", Heroic"
+        end
+        if CONDUIT_DB[name]["184"] and string.starts(CONDUIT_DB[name]["184"], "Dungeon") then
+          CONDUIT_DB[name]["226"] = CONDUIT_DB[name]["184"] .. ", M0"
+        end
+        if CONDUIT_DB[name]["184"] and string.starts(CONDUIT_DB[name]["184"], "Dungeon") then
+          CONDUIT_DB[name]["239"] = CONDUIT_DB[name]["184"] .. ", M+ 2-6"
+        end
+        if CONDUIT_DB[name]["184"] and string.starts(CONDUIT_DB[name]["184"], "Dungeon") then
+          CONDUIT_DB[name]["252"] = CONDUIT_DB[name]["184"] .. ", M+ 7-14"
+        end
+        if CONDUIT_DB[name]["184"] and string.starts(CONDUIT_DB[name]["184"], "Dungeon") then
+          CONDUIT_DB[name]["265"] = CONDUIT_DB[name]["184"] .. ", M+ 15+"
         end
       end
     end
