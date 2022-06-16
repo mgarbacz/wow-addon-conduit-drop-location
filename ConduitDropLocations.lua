@@ -72,9 +72,9 @@ function appendConduitDropLocation(tooltip)
         local conduitType = _G["GameTooltipTextLeft2"] and GetConduitType(_G["GameTooltipTextLeft2"]:GetText())
         local conduitLevel = _G["GameTooltipTextLeft3"] and GetConduitLevel(_G["GameTooltipTextLeft3"]:GetText())
 
-        local relevantConduitLevels = {145, 158, 171, 184, 200, 213, 226, 239, 252};
+        local relevantConduitLevels = {145, 158, 171, 184, 200, 213, 226, 239, 252, 265};
         local filteredConduitLevels = {};
-        
+
         for index, level in ipairs(relevantConduitLevels) do
             if level > conduitLevel then
                 table.insert(filteredConduitLevels, level);
@@ -115,7 +115,7 @@ function appendConduitDropLocation(tooltip)
                 tooltip:AddLine("Rank " .. rank .. " (ilvl: " .. level .. "): " .. fourthSource);
                 multipleSources = true;
             end
-            
+
             local fifthSource = GetSourceFromNameAndIlevel("____" .. conduitName, level);
             if fifthSource and fifthSource ~= "--" then
                 tooltip:AddLine("Rank " .. rank .. " (ilvl: " .. level .. "): " .. fifthSource);
