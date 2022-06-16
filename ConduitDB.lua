@@ -716,14 +716,16 @@ function string.starts(String,Start)
    return string.sub(String,1,string.len(Start))==Start
 end
 
-if addon.CONDUIT_DB then
-    for name in pairs(addon.CONDUIT_DB) do
-      if addon.CONDUIT_DB[name] then
-        if addon.CONDUIT_DB[name]["158"] then
-          addon.CONDUIT_DB[name]["158"] = "--"
+CONDUIT_DB = addon.CONDUIT_DB
+
+if CONDUIT_DB then
+    for name in pairs(CONDUIT_DB) do
+      if CONDUIT_DB[name] then
+        if CONDUIT_DB[name]["158"] then
+          CONDUIT_DB[name]["158"] = "--"
         end
-        if addon.CONDUIT_DB[name]["171"] then
-          addon.CONDUIT_DB[name]["171"] = "--"
+        if CONDUIT_DB[name]["171"] then
+          CONDUIT_DB[name]["171"] = "--"
         end
         if CONDUIT_DB[name]["184"] and string.starts(CONDUIT_DB[name]["184"], "Dungeon") then
           CONDUIT_DB[name]["200"] = CONDUIT_DB[name]["184"] .. ", Normal"
@@ -752,4 +754,3 @@ end
 -- print(CONDUIT_DB["Sleight of Hand"]["171"])
 -- print(CONDUIT_DB["Xuen's Bond"]["213"])
 -- print(CONDUIT_DB["_Xuen's Bond"]["213"])
-
